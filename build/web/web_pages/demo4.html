@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                // set json url
+		var json_url="GetSubCategoryJson.jsp?catid=1";
+
+		// get json data
+		jQuery.getJSON(json_url, function(data){
+
+			// put new dropdown values to players dropdown
+			jQuery.each(data, function(key, val){
+				console.log(val[0]);
+                                
+                                for(var i = 0 ; i < val.length ; i++)
+                                {    
+                                var obj = val[i];
+                                console.log(obj.id);
+                                console.log(obj.subCategoryName);
+        $("#teams-dropdown").append("<option value='" + obj.id + "'>" + obj.subCategoryName + "</option>")
+                                }
+				});
+		}); 
+});
+        </script>
+    </head>
+    <body>
+        <select id='teams-dropdown'>
+            <option value='0'>Select SubCategory...</option>
+        </select>
+    </body>
+</html>
